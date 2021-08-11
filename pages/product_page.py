@@ -7,8 +7,8 @@ class ProductPage(BasePage):
     def add_book_to_basket(self):
         ProductPage.should_be_add_to_basket_button(self)
         ProductPage.click_add_to_basket_button(self)
-        ProductPage.solve_quiz_and_get_code(self)
-        time.sleep(5)
+        #ProductPage.solve_quiz_and_get_code(self)
+        #time.sleep(5)
         ProductPage.should_be_name_book_in_message(self)
         ProductPage.should_be_value_price_in_message(self)
 
@@ -36,9 +36,9 @@ class ProductPage(BasePage):
         assert value_price == value_price_message, "Invalid basket's price"
    
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
 
-    def should_be_success_message(self):
-        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
-            "Success message is presented, but should not be"
+    #def should_be_success_message(self):
+        #assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            #"Success message is presented, but should not be"

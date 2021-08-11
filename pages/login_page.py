@@ -1,6 +1,7 @@
 ﻿from .base_page import BasePage
 from .locators import LoginPageLocators
 from selenium.webdriver.common.by import By
+import time
 
 class LoginPage(BasePage):
     def should_be_login_page(self):
@@ -20,4 +21,10 @@ class LoginPage(BasePage):
         register_mail = self.is_element_present(*LoginPageLocators.REGISTER_MAIL)
         register_password1 = self.is_element_present(*LoginPageLocators.REGISTER_PASSWORD1)
         register_password2 = self.is_element_present(*LoginPageLocators.REGISTER_PASSWORD2)
-        assert register_mail and register_password1 and register_password2, "Register form is missing "
+        assert register_mail and register_password1 and register_password2, "Register form is missing"
+
+    def register_new_user(self, email, password):
+        self.browser.find_element(*LoginPageLocators.REGISTER_MAIL).send_keys(email)
+        self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD1).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD2).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.REGISTER_BTN).click()
